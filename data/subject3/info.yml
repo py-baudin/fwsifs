@@ -1,0 +1,11 @@
+echo_times:
+- 2.22
+- 5.42
+- 8.620000000000001
+- 11.82
+- 15.02
+- 18.22
+field_strength: 3
+imaging_frequency: 123.2
+manufacturer: Siemens Healthineers
+sequence: null
