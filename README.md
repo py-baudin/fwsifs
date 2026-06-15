@@ -11,7 +11,8 @@ cd fwsifs
 conda create -n fwsifs python=3.12 numpy scipy numexpr
 conda activate fwsifs
 
-pip install .
+# install in editable mode 
+pip install -e .
 
 ```
 
