@@ -80,7 +80,7 @@ plt.imshow(mask[:,:,mask.shape[2]//2], cmap='gray')
 plt.xticks([])
 plt.yticks([])
 
-plt.title(f'{name} (FF={PLOT_OBJECT[1]:.0%})')
+plt.title(f'{name} (PDFF={PLOT_OBJECT[1]:.0%})')
 
 # plot freq shift vs angle
 angles = info['ANGLES']
@@ -90,8 +90,8 @@ ax = axes[1, 0]
 plt.sca(ax)
 sns.lineplot(data=stats, x='angle', y='shift', hue='fraction', palette='flare_r', legend=False)
 sns.lineplot(x=angles, y=shift_cylinder, color='black', linestyle=':', label='cylinder', legend=False)
-plt.ylabel(r'freq. shift [ppm]')
-plt.xlabel(r'$\theta$ [$\degree$]')
+plt.ylabel(r'${\Delta\omega}_\chi$ [ppm]')
+plt.xlabel(r'Angle to $B_0$ [$\degree$]')
 plt.title('frequency shift')
 plt.ylim(-0.15, 0.25)
 
@@ -114,7 +114,7 @@ plt.sca(ax)
 sns.lineplot(data=data, x='angle', y='decay', hue='fraction', palette='flare_r', legend=False)
 if not 'PERLIN' in info['OBJECT']:
     sns.lineplot(data[data.nexp==0], x='angle', y='pred', hue='fraction', palette='flare_r', linestyle=':', legend=False)
-plt.xlabel(r'$\theta$ [$\degree$]')
+plt.xlabel(r'Angle to $B_0$ [$\degree$]')
 plt.ylabel(r'$\eta_w (t=10ms)$')
 plt.title('water decay')
 plt.ylim(-0.05, 0.7)
@@ -129,12 +129,12 @@ ax.sharex(axes[1, 1])
 ax.sharey(axes[1, 1])
 plt.sca(ax)
 sns.lineplot(data=data, x='angle', y='decay', hue='fraction', palette='flare_r', legend='full')
-plt.xlabel(r'$\theta$ [$\degree$]')
+plt.xlabel(r'Angle to $B_0$ [$\degree$]')
 plt.ylabel(r'$\eta_f (t=10ms)$')
 plt.title('fat decay')
 legend_handles = ax.legend_.legend_handles
 [h.set_label(f) for f,h in zip(fraction_pc, legend_handles)]
-sns.move_legend(ax, loc='upper left', bbox_to_anchor=(1, 1), fontsize='small', title='fat fraction', handles=legend_handles)
+sns.move_legend(ax, loc='upper left', bbox_to_anchor=(1, 1), fontsize='small', title='PDFF', handles=legend_handles)
 
 
 
@@ -208,7 +208,7 @@ angles_subset = [angles[1], angles[len(angles)//2], angles[-1]]
 fflines = [plt.Line2D([],[], label=rf'$\theta={angle}$', linestyle='-', color='k', alpha=angle/90) for angle in angles_subset]
 legend_handles.append(plt.Line2D([],[], linestyle=''))
 legend_handles.extend(fflines)
-sns.move_legend(ax2, loc='upper left', bbox_to_anchor=(1, 1), fontsize='small', title='fat fraction', handles=legend_handles)
+sns.move_legend(ax2, loc='upper left', bbox_to_anchor=(1, 1), fontsize='small', title='PDFF', handles=legend_handles)
 
 
 # done

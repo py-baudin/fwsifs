@@ -583,11 +583,12 @@ class Objective(nlls.Objective):
                 dA = A * np.array([0, 1])
                 y_ = vecvec(np.conj(A[..., 1] * W * T), b)[:, NAX] * iM[..., 1]
                 q_ = vecvec(AWb, y_)
+                # TODO check sign! 
                 # H_ = 1/2 * np.real(1j * (hermitian(AW) * T) @ (W[..., NAX] * dA))
                 H_ = 1/2 * np.real(1j * matmat(AW.conj().mT * T, W[..., NAX] * dA))
                 H_ += hermitian(H_)
                 s_ = vecvec(matvec(H_, z), z)
-
+                # TODO check dphi0 !
                 dphi0 = - np.imag((s_ + 1j * q_) / (p + ignore))
                 dwf = np.real((-1j * y_ - 1j * z * dphi0[:, NAX]) * P0)
                 dwf -= 2 * matvec(iM, matvec(H_, wf))
