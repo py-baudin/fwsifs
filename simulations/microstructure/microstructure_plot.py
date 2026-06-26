@@ -165,8 +165,8 @@ lines = pd.concat([slope * t for t in tt], axis=0, keys=tt, names=['time']).rena
 ax1 = axes[0, 1]
 plt.sca(ax1)
 sns.lineplot(data=data[(data.angle==0)&(data.nexp==0)], x='time', y='qline', hue='fraction', palette='flare_r', linestyle=':', errorbar=None, legend=False)
-if info['OBJECT'] == 'RCYLINDERS':
-    sns.lineplot(lines.loc[lines.angle==90], x='time', y='line', hue='fraction', palette='flare_r', dashes=(3,1), legend=False) 
+# if info['OBJECT'] == 'RCYLINDERS':
+#     sns.lineplot(lines.loc[lines.angle==90], x='time', y='line', hue='fraction', palette='flare_r', dashes=(3,1), legend=False) 
 for angle, df in data.groupby('angle'):
     alpha = angle/90
     sns.lineplot(data=df, x='time', y='logfid', hue='fraction', palette='flare_r', alpha=alpha, errorbar=None, legend=False)
